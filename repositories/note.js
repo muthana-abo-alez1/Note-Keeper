@@ -6,11 +6,12 @@ exports.createNote = async (title, content) => {
 };
 
 exports.getAllNotes = async (page, limit) => {
-    const skip = (page - 1) * limit; 
-    return await Note.find()
-      .skip(skip)         
-      .limit(Number(limit)); 
-  };
+  const skip = (page - 1) * limit; 
+  return await Note.find()
+    .sort({ createdAt: -1 }) 
+    .skip(skip)
+    .limit(Number(limit));
+};
 
 exports.getNoteById = async (id) => {
   return await Note.findById(id);
