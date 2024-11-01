@@ -16,12 +16,12 @@ const NoteModal = ({ setRefreshNotes }) => {
         setContent(selectedNote.content);
         setCreationDate(selectedNote.creationDate);
       } else {
-        setTitle(""); 
-        setContent(""); 
-        setCreationDate(new Date()); 
+        setTitle("");
+        setContent("");
+        setCreationDate(new Date());
       }
     }
-  }, [isModalOpen, selectedNote]); 
+  }, [isModalOpen, selectedNote]);
 
   const handleSave = async () => {
     const newNote = {
@@ -39,7 +39,7 @@ const NoteModal = ({ setRefreshNotes }) => {
         await addNote(newNote);
         console.log("Note added:", newNote);
       }
-      setRefreshNotes(true); 
+      setRefreshNotes(true);
     } catch (error) {
       console.error("Error saving note:", error);
     } finally {
@@ -74,11 +74,11 @@ const NoteModal = ({ setRefreshNotes }) => {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <button onClick={handleSave} className="modal-confirm-btn">
-          {selectedNote ? "Update" : "Add"}
-        </button>
         <button onClick={closeModal} className="modal-cancel-btn">
           Cancel
+        </button>
+        <button onClick={handleSave} className="modal-confirm-btn">
+          {selectedNote ? "Update" : "Add"}
         </button>
       </div>
     </div>
