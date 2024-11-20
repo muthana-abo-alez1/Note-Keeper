@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.scss'; 
 
-const Modal = ({ isOpen, onClose, onConfirm }) => {
+const DeletingNoteConfirmationDialog = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (e) => {
@@ -22,4 +22,4 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
   );
 };
 
-export default Modal;
+export default DeletingNoteConfirmationDialog;

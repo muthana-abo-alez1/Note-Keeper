@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Modal.scss";
-import { useModal } from "../../../../Context/ModalContext";
+import { useModal } from "../../../../Context/NotesModalContext";
 import { addNote, updateNote } from "../../../../services/NotesService";
 
 const NoteModal = ({ setRefreshNotes }) => {

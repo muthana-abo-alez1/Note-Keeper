@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './NoteCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../Modal/Modal';
+import DeletingNoteConfirmationDialog from '../Modal/DeletingNoteConfirmationDialog';
 import { formatDate } from '../../../../shared/formatters/DateFormatter';
 
 const NoteCard = ({ title, content, creationDate, onDelete, onEdit ,lastUpdatedDate}) => {
@@ -42,7 +42,7 @@ const NoteCard = ({ title, content, creationDate, onDelete, onEdit ,lastUpdatedD
         onClick={handleDeleteClick} 
       />
 
-      <Modal
+      <DeletingNoteConfirmationDialog
         isOpen={showConfirm} 
         onClose={cancelDelete} 
         onConfirm={confirmDelete} 

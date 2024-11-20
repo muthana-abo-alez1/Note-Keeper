@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import { useModal } from '../../../../Context/ModalContext';
+import { useModal } from '../../../../Context/NotesModalContext';
 
 const Header = () => {
     const { openModal } = useModal();

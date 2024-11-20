@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { getNotes, searchNotes } from "../services/NotesService"; 
+import { getNotes, searchNotes } from "../services/NotesService";
 
 const useNotes = (initialLimit = 12) => {
   const [notes, setNotes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit] = useState(initialLimit);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
   const [refreshNotes, setRefreshNotes] = useState(false);
 
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const data = isSearching
-          ? await searchNotes(searchQuery, currentPage, limit)
-          : await getNotes(currentPage, limit);
+        const data = searchQuery
+          ? await searchNotes(searchQuery, currentPage, initialLimit)
+          : await getNotes(currentPage, initialLimit);
 
         setNotes(data || []);
       } catch (error) {
@@ -24,7 +22,7 @@ const useNotes = (initialLimit = 12) => {
 
     fetchNotes();
     setRefreshNotes(false);
-  }, [refreshNotes, currentPage, limit, searchQuery, isSearching]);
+  }, [refreshNotes, currentPage, searchQuery, initialLimit]);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -37,10 +35,9 @@ const useNotes = (initialLimit = 12) => {
   const handleSearch = (query) => {
     setSearchQuery(query);
     setCurrentPage(1);
-    setIsSearching(true);
   };
 
-  const isNextButtonDisabled = notes.length < limit;
+  const isNextButtonDisabled = notes.length < initialLimit;
 
   return {
     notes,
@@ -49,7 +46,6 @@ const useNotes = (initialLimit = 12) => {
     handlePreviousPage,
     handleSearch,
     setRefreshNotes,
-    setIsSearching,
     isNextButtonDisabled,
   };
 };

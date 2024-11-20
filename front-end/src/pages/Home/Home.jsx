@@ -16,14 +16,13 @@ const Home = () => {
     handlePreviousPage,
     handleSearch,
     setRefreshNotes,
-    setIsSearching,
     isNextButtonDisabled,
   } = useNotes(NOTES_PER_PAGE);
 
   return (
     <div className="home">
       <Header />
-      <Search onSearch={handleSearch} setIsSearching={setIsSearching} />
+      <Search onSearch={handleSearch}  />
       <NotesList notes={notes} setRefreshNotes={setRefreshNotes} />
       <NoteModal setRefreshNotes={setRefreshNotes} />
       <Pagination
