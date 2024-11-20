@@ -29,12 +29,15 @@ exports.deleteNoteById = async (id) => {
   return await Note.findByIdAndDelete(id);
 };
 
-exports.searchNotes = async (query) => {
-    const regex = new RegExp(query, 'i'); 
-    return await Note.find({
-      $or: [
-        { title: { $regex: regex } },
-        { content: { $regex: regex } }
-      ]
-    });
-  };
+exports.searchNotes = async (query, page, limit) => {
+  const regex = new RegExp(query, 'i'); 
+  const startIndex = (page - 1) * limit;
+  return await Note.find({
+    $or: [
+      { title: { $regex: regex } },
+      { content: { $regex: regex } }
+    ]
+  })
+  .skip(startIndex) 
+  .limit(limit); 
+};

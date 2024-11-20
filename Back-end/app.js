@@ -1,9 +1,11 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const noteRoutes = require("./routes/noteRoutes");
+const cors = require("cors"); 
 const app = express();
 require("dotenv").config();
 
+app.use(cors()); 
 app.use(express.json());
 
 async function startServer() {
